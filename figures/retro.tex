@@ -1,0 +1,29 @@
+In retrospective analysis a model is fitted to increasing periods of data to identify systematic inconsistencies \citep{Mohn1999retrospective}.
+
+Retrospective analysis is a form of hindcasting that involves sequentially removing observations from the terminal year (peels), fitting the model to the truncated series and then comparing model estimates from the truncated and full time-series. 
+
+
+The most commonly used statistic to assess the strength of patterns is Mohn’s $\rho$ a measure of relative error
+
+\begin{equation}\rho = \overline{ \left[ \frac{X_{Y-p,ref}-X_{Y-y,ref}}{X_{Y-y,ref}} \right]}\end{equation}
+
+where $X$ is the quantity for which Mohn’s $\rho$ is being calculated, $Y$ the final year of the simulation, $y$ the last year of a given “peel” $p$, and $ref$ the reference peel, i.e. the most recent assessment.
+
+The difference between the reference ($X{ref}$) the alternative peeled model ($X{p}$) is calculated using the relative error 
+
+\begin{equation} RE=\frac{X_{p}-X_{ref}}{X_{ref}} \end{equation}
+
+There are problems with the use of $RE$, since for reference model estimates which are low relative to the alternative model, i.e. $X_{ref} < X_{p}$, there is no upper limit, while for $X_{ref} > X_{p}$ the error cannot exceed 1.0. Therefore the chosen metric puts a heavier penalty on negative than on positive errors, i.e. historical underestimates. This means that when comparing models estimates, those that are low will be preferred. This problem can be overcome by using the logarithm of the ratio instead i.e. $log\frac{X_{p}}{X_{ref}}$, which also leads to better statistical properties.
+
+While it is fairly straightforward to compare the  statistic among alternative model runs, the decisions of whether the Mohn’s $\rho$ statistic of the ‘best’ model is acceptable or not can be to some extent subjective. To address this, a “rule of thumb” was proposed by \cite{hurtado2014}, suggesting values of Mohn’s $\rho$ that fall outside the range (-0.15 to 0.20) can be interpreted as an indication of an undesirable retrospective pattern for e.g. longer lived species.
+
+
+    
+
+
+
+
+
+
+
+

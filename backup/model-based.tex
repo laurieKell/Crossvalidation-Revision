@@ -1,0 +1,13 @@
+A standard diagnostic is to evaluate retrospective bias as proposed by \cite{mohn1999retrospectyive}. As described in earlier sections, the retrospective analysis can be conducted by sequentially refitting the model to reduced data sets by removing some recent years' data to see if there are any systematic pattern within a model. The retrospective bias is then evaluated using the so-called Mohn's rho as 
+
+\[
+\rho = \disp \sum_{t=T-n}^{T-1} \frac{\hat{y}_{(1:t),t}-\hat{y}_{(1:T),t}}{\hat{y}_{(1:T),t}}, 
+\]
+where $\hat{y}$ denotes in general a value like estimated biomass, 1+population size, or predicted abundance index, and the value with suffix $\hat{y}_{(1:t^\prime),t}$ means such a value estimated at time $t$ of a full series from 1 to $T$ using a retrospective data window from 1 to $t^\prime (\leq T)$. In this paper, we will use a variant of the original $\rho$ as the mean (average) like 
+\begin{equation}
+\rho_r = \disp \frac{1}{n} \sum_{t=T-n}^{T-1} \frac{\hat{y}_{(1:t),t}-\hat{y}_{(1:T),t}}{\hat{y}_{(1:T),t}} 
+\quad \mbox{[rho for retro-bias]}, 
+\end{equation}
+This metric is an average of relative differences at the final time of each window. Therefore it is a measure of relative retrospective `bias' (scale-free) in a statistical sense. The metric tends to be applied not on the log but the original scale because both the directions of positive and negative biases are regarded as being equivalent. 
+
+While it is fairly straightforward to compare the  statistic among alternative model runs, the decisions of whether the Mohn’s $\rho$ statistic of the ‘best’ model is acceptable or not can be to some extent subjective. To address this, a “rule of thumb” was proposed by \cite{hurtado2014}, suggesting values of Mohn’s $\rho$ that fall outside the range (-0.15 to 0.20) can be interpreted as an indication of an undesirable retrospective pattern for e.g. longer lived species.

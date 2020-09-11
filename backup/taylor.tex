@@ -1,0 +1,20 @@
+
+Taylor diagrams are mathematical diagrams designed to graphically indicate which of the models of is most realistic (Taylor, K.E. 2001. "Summarizing multiple aspects of model performance in a single diagram". J. Geophys. Res. 106: 7183–7192). It is used to quantify the degree of correspondence between the modeled and observed behavior in terms of three statistics: the Pearson correlation coefficient, the root-mean-square error (RMSE) error, and the standard deviation. As evident in the one year projection most models seem to do well for (please check this as 2 and 4 should be off in the 2nd panel and it doesn't appear so). Also it would be good to put the observed variation (sigma for the indices on a contour for sigma, so we can see if the predictive capability is within the range of variation).
+
+A well-fitting model results in predicted values close to the reference values, i.e. if $Y_t$ is the variable of interest at time $t$ and ${\hat{Y}_t}$ is it's predicted value then the prediction error $e_t = Y_t - \hat{Y}_t$ should be small.
+
+A commonly used measure is root mean square error (RMSE,~$E^\prime$), the square root of the variance of the residuals and indicates how close the observed data points are to the predicted values i.e.
+     
+     \begin{equation} {${E^{\prime} = \sqrt{\frac{1}{T} \sum_{t=1}^T e_t^2}}$} \end{equation}
+
+As the square root of a variance it can also be interpreted as the standard deviation of the unexplained variance, lower values indicate better fits. $E^\prime$ is sensitive to outliers, however,and favours forecasts that avoid large deviations from the mean and cannot be used to compare across series.
+
+The best statistical measure to use depends on the objectives of the analysis and using more than one measure can be helpful in providing insight into the nature of observation and process error structures.
+
+For example the correlation ($\rho$) between $Y_y$ and $\bar{Y_y}$ is not affected by the amplitude of the variations, is insensitive to biases and errors in variance, and can be used to compare across seris. $E^{\prime 2}$ and $\rho$ are related by the cosine rule i.e.
+
+  \begin{equation} {$E^{\prime 2} = \sigma_o^2 + \sigma_f^2 - 2\sigma_o\sigma_f\rho$} \end{equation}
+
+ Where the reference set ($o$) are the observations not included in the retrospective assessment and the values (f) are their estimates. 
+ 
+ This means that $E^\prime$, $\rho$ and $\sigma_f$ can be summarised simultaneously in a single diagram \citep{taylor2001summarizing}. Taylor diagrams therefore provide a concise statistical summary of how well patterns match each other and are therefore especially useful for evaluating multiple aspects or in gauging the relative skill of different models \citep{griggs2002climate}.

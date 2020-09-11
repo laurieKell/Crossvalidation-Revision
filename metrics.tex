@@ -1,0 +1,128 @@
+Indices of abundance are a key contributor to the overall likelihood when fitting stock assessment models to data. The Sum of Squared Errors (SSE) between observed and predicted indices in log-space is the measure of fitness. When comparing models, however, the SSE is problematic because complex models tend to have many parameters to allow flexibility when fitting, which may result in a low SSE due to overfitting. Therefore, information criteria, such as AIC, have been developed to aid in model selection. AIC is only a relative measure of the appropriateness of models, and additional diagnostic tests are required for model validation. This is of particular importance for stock assessment models where only a single historical data set exists, and the system can not be observed directly.
+
+Therefore in stock assessment, a standard diagnostic is to evaluate retrospective bias as proposed by \cite{mohn1999retrospective}. As described in earlier sections, the retrospective analysis can be conducted by sequentially refitting the model to reduced data sets by removing some recent years' data to see if there are any systematic pattern within a model. The retrospective bias is then evaluated using the so-called Mohn's rho as 
+
+\begin{equation}
+\label{eqn:mohn0}
+\rho_M = \disp \sum_{t=T-n}^{T-1} \frac{\hat{y}_{(1:t),t}-\hat{y}_{(1:T),t}}{\hat{y}_{(1:T),t}}, 
+\end{equation}
+
+where $\hat{y}$ denotes in general a value like estimated biomass, 1+population size, or predicted abundance index, and the value with suffix $\hat{y}_{(1:t^\prime),t}$ means such a value estimated at time $t$ of a full series from 1 to $T$ using a retrospective data window from 1 to $t^\prime (\leq T)$. In this paper, we will use a variant of the original $\rho$ as the mean (average) like 
+\begin{equation}
+\label{eqn:mohn}
+\rho_{Mr} = \disp \frac{1}{n} \sum_{t=T-n}^{T-1} \frac{\hat{y}_{(1:t),t}-\hat{y}_{(1:T),t}}{\hat{y}_{(1:T),t}} 
+\quad \mbox{[rho for retro-bias]}, 
+\end{equation}
+This metric is an average of relative differences at the final time of each window. Therefore it is a measure of relative retrospective `bias' (scale-free) in a statistical sense. The metric tends to be applied not on the log but the original scale because both the directions of positive and negative biases are regarded as being equivalent. 
+
+To evaluate the absolute prediction error for the following can be used
+\begin{equation}
+\label{eqn:mohn3}
+|\rho_p| = \disp \frac{1}{n-S+1} \sum_{t=T-n}^{T-S}
+\frac{\left| \hat{y}_{(1:t),t+S}-\hat{y}_{(1:T),t+S} \right|}{\hat{y}_{(1:T),t+S}}. 
+%\ \mbox{[rho for projection-absolute-error]}
+\end{equation} 
+
+Hindcasting, which is the primary focus in this paper is a form of retrospective cross-validation, and therefore an extension of retrospective analysis which projects several steps forward beyond the retrospective data window to quantify the prediction skill of a model. Theoretically, the projection period is to the end of the historical time period. However, in practice, the step size is one or several years ahead reflecting the requirements for robust management advice, and considering non-small process stochasticity in fishery population dynamics and non-ignorable extents of observation uncertainty. For evaluating prediction skill, we propose several metrics for model-dependent and model-free validations.
+
+We  define `retro-period' and `hc-period' as `the period of shrunken data set for retrospective model fitting' and `future time period with a certain projection step (say $S \geq 1$) for hindcasting after retro-period''. And let $\hat{y}_{(1:t),t+S}$ be an projected value at time $t+S$ in an hc-period based on the conditioned model with data in a retro-period $(1,t)$. 
+
+\vspace{0.2cm} \noindent
+{\it Modified Mohn's rho for prediction bias and absolute error:}\\
+\begin{equation}
+\label{eqn:mohn2}
+\rho_p = \disp \frac{1}{n-S+1} \sum_{t=T-n}^{T-S} 
+\frac{\hat{y}_{(1:t),t+S}-\hat{y}_{(1:T),t+S}}{\hat{y}_{(1:T),t+S}} 
+\ \mbox{[rho for projection-bias]}
+\end{equation} 
+
+This is a simple extension of Mohn's rho to evaluate the prediction skill of a model because all the values are produced under the model assumption. In this sense, it is a model-dependent consistency check of prediction skill. To evaluate the absolute prediction error for the following can be used
+\begin{equation}
+\label{eqn:mohn3}
+|\rho_p| = \disp \frac{1}{(n-S+1)} \sum_{t=T-n}^{T-S}
+\frac{\left| \hat{y}_{(1:t),t+S}-\hat{y}_{(1:T),t+S} \right|}{\hat{y}_{(1:T),t+S}}. 
+\ \mbox{[rho for projection-absolute-error]}
+\end{equation} 
+
+There are problems with the use of relative error, since for reference model estimates which are low relative to the alternative model, i.e. $X_{ref} < X_{p}$, there is no upper limit, while for $X_{ref} > X_{p}$ the error cannot exceed 1.0. Therefore the chosen metric puts a heavier penalty on negative than on positive errors, i.e. historical underestimates. This means that when comparing models estimates, those that are low will be preferred. This problem can be overcome by using the logarithm of the ratio instead i.e. 
+\begin{equation}
+\label{eqn:re}
+log\frac{X_{p}}{X_{ref}}
+\end{equation}
+
+which also leads to better statistical properties.
+
+
+\vspace{0.2cm} 
+The next three metrics are used for model-free validation, i.e. comparing predictions with observations. The error is defined as the difference between the predicted ($\hat{y}_{(1:t),t+S}$) and observed $y_{t+S}$) values, such as the model-based predicted CPUE using a retro-period data and observed CPUE used for model fitting. 
+
+\vspace{0.2cm} \noindent
+{\it Mean Absolute Percentage Error (MAPE) for projection:}
+\begin{equation}
+\label{eqn:mape}
+MAPE = \disp \frac{1}{n-S+1} \sum_{t=T-n}^{T-S}
+\frac{\left| \hat{y}_{(1:t),t+S}-y_{t+S} \right|}{y_{t+S}} \times 100 
+\end{equation} 
+A simple extension of the modified Mohn's rho for quantifying the relative difference between predictions and observations. This metric is also a scaled version of Mean Absolute Error (MAE). A problem with the MAE is that the relative size of the error is not always obvious. Sometimes it is hard to distinguish a big error from a small error. The MAPE can be calculated to allow forecasts of different series in different scales to be compared.
+
+\vspace{0.2cm} \noindent
+{\it Root Mean Squared Error (RMSE) for projection error:}\\
+As an alternative measure of distance, the Mean Squared Error (MSE) is also commonly used in statistical literatures. To make comparison easier, the following squared root variant of MSE can be used: 
+\begin{equation}
+\label{eqn:rmse}
+RMSE = \disp \sqrt{ \frac{1}{n-S+1} \sum_{t=T-n}^{T-S} 
+\left( \hat{y}_{(1:t),t+S}-y_{t+S} \right)^2 }
+\end{equation} 
+
+In comparison to $\rho_p$ and MAPE, RMSE is not scale-invariant and can be influenced by large discrepancies in a single data point. A useful feature, however, that the squared RMSE can, in general, be expressed,  for a notational simplicity if we set $S$ at 1, as
+
+\begin{equation}
+\label{eqn:rmse2}
+\begin{array}{lcl}
+\vspace{0.1cm}
+{RMSE}^2 &=& \disp \frac{1}{n} \sum_{t=T-n}^{T-1} \left( \hat{y}_{(1:t),t+1}-y_{t+1} \right)^2 \\
+\vspace{0.1cm}
+&=& \disp \frac{1}{n} \sum_{t=T-n}^{T-1} \left( \hat{y}_{(1:t),t+1}-y_{t+1} - \bar{E} \right)^2 + \bar{E}^2 \\
+&=& \disp E^{\prime 2} + \bar{E}^2
+\end{array}
+\end{equation}
+where 
+\begin{equation}
+\begin{array}{lcl}
+\vspace{0.1cm}
+\bar{E} &=& \disp \frac{1}{n} \sum_{t=T-n}^{T-1} \left( \hat{y}_{(1:t),t+1}-y_{t+1} \right), \\
+\vspace{0.1cm}
+E^{\prime 2} &=& \disp \frac{1}{n} \sum_{t=T-n}^{T-1} \left( \hat{y}_{(1:t),t+1}-y_{t+1} - \bar{E} \right)^2.
+\end{array}
+\end{equation}
+The centred mean squared error, $E^{\prime 2}$ can be also expressed as 
+\begin{equation}
+E^{\prime 2} = \sigma_o^2 + \sigma_f^2 - 2\sigma_o \sigma_f Cor,
+\end{equation}
+where $\sigma_o$ and $\sigma_f$ are respectively the standard deviation of observation $y_t$ and prediction, and $Cor$ is the correlation between them. This means that $E^\prime$, $\rho$ and $\sigma_f$ can be summarised simultaneously \parencite{taylor2001summarizing}. Taylor diagrams provide a concise statistical summary of how well patterns match each other and are therefore useful for evaluating multiple aspects or in gauging the relative skill of different models \parencite{griggs2002climate}. It should be remarked that RMSE can be extended for a percentage measure as MAPE, but for the reason stated below, we use RMSE as defined above 
+
+\vspace{0.2cm} \noindent
+{\it Mean absolute scaled error (MASE) for projection:}\\ 
+A more robust and easier to interpret statistic for evaluating prediction skill is the MASE \parencite{hyndman2006another}. MASE evaluates a model's prediction skill relative to a na\" {i}ve baseline prediction, based on previous observation. A prediction is said to have skill if it improves the model forecast compared to the baseline. A widely used baseline forecast for time series is the persistence algorithm that takes the value at the previous time step to predict the expected outcome at the next time step as a na\ "{i}ve in-sample prediction, i.e. tomorrow weather will be the same as today. The original definition of MASE for 1-step ahead prediction is 
+\begin{equation}
+\label{eqn:mase}
+{MASE=\frac{\disp \frac{1}{n} \sum_{t=T-n}^{T-1} \left| \hat{y}_{(1:t),t+1}-y_{t+1} \right|}
+{\disp \frac{1}{n-1} \sum_{t=T-n+1}^{T-1} \left|y_{t+1}-y_{t}\right|}}, 
+\end{equation}
+and this can be extended as \toshi{actually not very much straightforward but seems as below}
+\begin{equation}
+MASE=
+\frac{\disp \frac{1}{n-S+1} \sum_{t=T-n}^{T-S}  \left| \hat{y}_{(1:t),t+S}-y_{t+S} \right|}
+{\disp \frac{1}{n-S} \sum_{t=T-n+1}^{T-S} \left|y_{t+S}-y_{t}\right|}. 
+\end{equation} 
+The MASE has the desirable properties of scale invariance, predictable behaviour, symmetry, interpretability and asymptotic normality. Compared to MAPE, which relies on the division by observations for scaling, MASE does not necessarily skew its distribution even when the observed values are close to zero. MASE is also easier to interpret as a score of 0.5 indicates that the model forecasts are twice as accurate as a na\''{i}ve baseline prediction; the model thus has prediction skill.
+\vspace{0.2cm} 
+The best statistical measure to use depends on the objectives of the analysis and using more than one measure can be helpful in providing insight into the nature of observation and process error structures. Here for the evaluation of models, we will use the following metrics: 
+
+\begin{itemize}
+\item Original Mohn's rho ($\rho$) for checking the retrospective bias \\
+\vspace{-0.3cm}
+\item Modified Mohn's rho for prediction \toshi{bias and absolute error, which? both might be meaningful though but it becomes noisy...} as checking model-based self-consistency check \\
+\vspace{-0.3cm}
+\item MASE and RMSE for model-free validation with different angles. 
+\end{itemize}

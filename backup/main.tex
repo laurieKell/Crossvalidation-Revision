@@ -1,0 +1,188 @@
+\documentclass[a4paper]{article}
+
+\usepackage[authoryear, round]{natbib}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+%% My definition
+\newcommand{\toshi}{\textcolor{teal}}
+\newcommand{\laurie}{\textcolor{red}}
+\newcommand{\henning}{\textcolor{orange}}
+\newcommand{\rishi}{\textcolor{green}}
+\newcommand{\iago}{\textcolor{purple}}
+\newcommand{\all}{\textcolor{pink}}
+
+\newcommand{\disp}{\displaystyle}
+
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+
+\usepackage{color}
+\definecolor{darkgreen}{rgb}{0.0, 0.5, 0.0}
+\definecolor{darkred}{rgb}{0.7, 0.11, 0.11}
+\definecolor{darkblue}{rgb}{0,0,0.5}
+\definecolor{shadecolor}{rgb}{1,1,0.95}
+\definecolor{shade}{rgb}{1,1,0.95}
+\definecolor{coilin}{rgb}{1,0,1}
+
+\title{Is It Me or My Model Talking?}
+\author{Laurence Kell, Toshihide Kitakado, Rishi Sharma, Henning Winker, \\ Iago Mosqueira, Dan Fu, Max Cardinale, ...}
+
+\begin{document}
+
+\iffalse
+\section*{ICES Background}
+
+Observational data are imperfect, and predictive models based on those data represent simplifications of how some aspect of the world works. Thus, in the fisheries advisory process (e.g., development of catch advice using stock assessments, evaluation of management strategies), it is clear that our analyses are fraught with uncertainty, stemming from uncertainty in the input data (observations) or from the \laurie{structure (degree of simplification and validity of assumptions)} of the methods and models employed. Input uncertainty is easier to measure using standard statistical procedures, and to address through improvements to survey designs, sampling schemes, and statistical methods. \laurie{Structural uncertainties however, are more intangible as they often represent “known unknowns” - i.e., we know there are limitations to the methods and models, but it is difficult to describe and measure them without comprehensive analyses, such as simulation testing or cross-validation}.
+
+With the development of more advanced analytical frameworks that support implementation of  machine learning, artificial intelligence, and ensemble modeling, we invite fisheries scientists to a session to present advances in \laurie{identifying, quantifying and dealing with structural uncertainties in the fisheries science advisory process.}
+
+We invite contributions on the following themes:
+
+\begin{itemize}
+    \item \laurie{Uncertainties throughout the stock assessment and management strategy evaluation process}
+    \item \laurie{Identification and testing of plausible structural hypotheses, and structural uncertainties}
+    \item \laurie{Sensitivity analysis}
+    \item \laurie{Model ensembles (within and between models) see previous \href{ https://www.fisheries.noaa.gov/national/population-assessments/noaa-fisheries-13th-national-stock-assessment-workshop-report-released}{NOAA workshop} }
+    \item \laurie{Gaps and needs for developing ensembles}
+    \item \laurie{Evaluating trade-offs between one versus multiple models}
+    \item \laurie{Combining and communicating results across ensemble members and stakeholders}
+\end{itemize}
+\fi
+
+\maketitle
+ 
+\section*{Outline}
+\begin{itemize}
+    
+    %\item The provision of fisheries management advice requires the assessment of stock status relative to reference points, the prediction of the response of a stock to management, and checking that predictions are consistent with reality (Holt pers com.) 
+    
+    %\item The Precautionary Approach requires the development of advice that is robust to uncertainty. Therefore, often when conducting stock assessments multiple models with different structures and datasets, are used to explore uncertainty. This means, however, that it is difficult to compare models using conventional metrics such as AIC. 
+    
+    \item  We   compare SS, SS-ASPM, and Jabba assessments for Indian Ocean yellowfin tuna  using multiple metrics, and discuss hypothesis testing, model selection and model validation. We make recommendations for the bench-marking of stock assessment methods and discuss the consequences for MSE. In particular weighting of alternative Operating Models, modelling process error, and the development of Observation Error Models.   
+
+   \item We predict forward the retrospective analyses and compare model predictions with historical estimates.The absence of retrospective patterns, however, while reassuring is not sufficient as it is not possible to validate models based on model outputs. We therefore conduct model free hindcasts to compare observations with model estimates. 
+   
+   \item The use of metrics based on prediction skill allows different data components and model to be compared in order to explore data conflicts and potential model misspecification. The accuracy and precision of predictions depend on the validity of the model, the information in the data, and how far ahead predictions are required. 
+    
+\end{itemize}
+
+\newpage
+\tableofcontents 
+
+
+
+\newpage    
+\begin{abstract}
+    %Evaluating how well the model fits data has been receiving much attention in fisheries science, both in terms of goodness-of-fit and retrospectively. This however merely tells us how well we can describe the past, yet little how well we can predict the future under alternative management actions. In this paper, we revisit the concepts behind hindcasting cross-validation (hcxval) as an important model-free validation tool for predictive modelling. Together with conventional residual diagnostics and retrospective analysis, we apply hcxval to three examples of alternative candidate models using the recent Indian Ocean yellowfin tuna assessment as a case study. 
+    %These models comprise the 2019 spatially structured reference model implemented in Stock Synthesis (ss-ref), a deterministic age-structured production model (ss-aspm) of ss-ref and a simplied spatially aggregated stochastic surplus production model implemented in the 'JABBA' package. To assess prediction skill, we computed the Mean-Absolute-Scaled-Error (MASE), which, unlike e.g. Aikaike's Information Criterion, enables to compare across different models fitted to different data. The best MASE values (MASE < 1) were determined for ss-asem, which indicates that recruitment deviations in ss-ref were poorly estimated due to no or limited information in the 'noisy' length composition data. By contrast, the area effects retained in ss-aspm best explained its superior prediction skill compared to the spatially aggregated jabba model. We suggest that one-step ahead predictions are efficient for detecting overfitting and for model validation in general, but for future quota advice the forecast horizon should preferably at least match the assessment interval to ultimately increase confidence in the model-based scientific advice by stakeholders, managers and policy makers.
+\end{abstract}
+
+\newpage
+
+%\toshi{The existing paragraphs look very good to me. However, I think we can add two other paragraphs to briefly address 1) differences between "simple retro and retro-hindcasting" and "model-based and model-free validation"  and 2) yellow fin? This is because the last para under Intro is short and looks sudden. } \laurie{Done}
+ 
+
+\section{Results: \rishi{Rishi Completed}}
+
+The traditional retrospective analysis and with a three step ahead prediction is shown in figure \ref{fig:retro} for $SSB:B_{MSY}$ and $F:F_{MSY}$ (SSB & F for SS and ASPM and exploitable biomass and harvest rate for JABBA). Even for a one year ahead prediction, the base case and JABBA assessments start to diverge from the assessment that included all years. The pattern gets worse for the three year projections. Table \tref{tab:retro} shows the estimates of Monh's $\rho$, RMSE, and MASE. This allows bias, variance and model-based prediction skill to be compared.
+
+ASPM values are relatively unbiased with low variance and good prediction skill. For SS, however, there is over and underestimation of SSB and F respectively. For JABBA a strong negative retrospective pattern is seen in F, a negative bias is also seen in biomass.
+
+%The residuals from the model fits to the indices of abundance are shown in Figure~\ref{fig:runs}, the background indicates whether they passed (green) or failed (red) the runs tests. In general the CPUE for Area 2 and Area 4 perform poorly for both the base case and the JABBA models. 1st quarter indices also perform poorly compared to the other quarters (quarter 3 for CPUE 1 is also poorly predicted). As indicated the green shows that the runs test passes for most of the ASPM model data, and a lot more red indicators exist for the other two models.  
+
+The results from the model-free hindcasts are shown in Figures~\ref{fig:hy} and \ref{fig:hy3} for one and three year ahead predictions respectively. CPUE's from area 2 and 4 perform poorly as in the previous figures for the base case and JABBA. The ASPM also performs poorly for Area 2 in the 3 year hindcast projections. Model fits for 3 years ahead for both JABBA and the base case perform poorly. Area 2 also fails for ASPM in the 3 year projections. As a bulk of the catch comes from Area 1 and 2, Area 2 index of abundance is important to predict. In addition Area 4 in the eastern part of the Indian Ocean perform poorly with all models in the three year hindcast exercise.   
+
+The fits are summarised in Figures~\ref{fig:td} in the form of Taylor diagrams \citep{taylor2001summarizing}.The fits are summarised in Figures 6 and Figure 6 in the form of Taylor diagrams. Taylor diagrams are mathematical diagrams designed to graphically indicate which of the models of is most realistic (Taylor, K.E. 2001). It is used to quantify the degree of correspondence between the modeled and observed behavior in terms of three statistics: the Pearson correlation
+coefficient, the root-mean-square error (RMSE) error, and the standard deviation. 
+
+As evident in the one year projection most models seem to do well for he one year hindcast. ASPM estimates appears to have little bias In the one year hindcast, all models other than area 2 indices had a high RMSE, high sigma, and low correlation (left panel). Other models seem to have a high overlap (lower left cluster indicating a high correlation, and low RMSE and low sigma). As we go to a three year hindcast, all models seem to perform poorly, other than the ASPM. Even, the ASPM, appears to do poorly with the 2nd CPUE. the correlation gets worse for all models for CPUE 1 2, though the RMSE and sigma remains low. 
+
+The model and prediction residuals are summarised in Figure \ref{fig:residuals}, these show that SS is imprecise and JABBA biased.
+
+%In the one year hindcast, all models other than area 2 indices had a high RMSE, high sigma, and low correlation (left panel). Other models seem to have a high overlap (lower left cluster indicating a high correlation, and low RMSE and low sigma). As we go to a three year hindcast, all models seem to perform poorly, other than the ASPM. Even, the ASPM, appears to do poorly with the 2nd CPUE. the correlation gets worse for all models for CPUE 1 & 2, though the RMSE and sigma remains low.  
+
+Table \ref{tab:retro-rho} and  \ref{tab:retro-re} show Mohn's $\rho_{p}$) and RMSE for the retrospective analysis and retrospective with projection respectively, Table \label{tab:rmse} summaries the metrics for the model free hindcast.
+
+From our analysis the following can be discerned with respect to how well each models with respect to the current status quo in evaluating models, i.e. retrospective analysis. We then present the model free evaluating algorithms with hindcast for one and three year ahead projections. We chose 3 years as that is essentially the time-step between assessments in most tRFMO's.
+
+    \begin{description}
+    \item{Retrospective analysis for F/FMSY and B/BMSY}
+    \begin{itemize}
+         \item Figure \ref{fig:retro} and Table \ref{tab:retro} summarise the retrospective analysis, taking 0.2 and -0.15 as the cut off points for accepting an assessment all assessments pass. 
+        \item The strongest retrospective patterns are seen for SS, where F is negatively biased, and although the value of Mohn's $\rho$ is low for SSB a strong pattern is seen with underestimates followed by overestimates. 
+        \item Although recent Jabba estimates are unbiased historical estimates of F and Biomass are negatively biased.
+        \item Jabba estimates are problematic as it appears that even if F<FMSY the stock will decline below BMSY
+        \item ASPM estimates appears to have little bias
+    \end{itemize}
+    \begin{description}    
+    \item{Retrospective analysis and projections for F/FMSY and B/BMSY} 
+    \begin{itemize}
+      \item Figure \ref{fig:proj} and Table \ref{tab:proj} summarise the retrospective analysis combinded with a three prediction, again taking the cut off as 0.2 to -0.15, both SS and Jabba fail.
+      \item ASPM appears not to show patterns in the projections
+        \item ASPM performs best
+        \item Survey 2 performs poorly across all models
+        \item It appears that the length compositions add noise (SS), and that area effects (JABBA) are important.
+        \item However these is no objective way to choose an assessment based on retrospective analysis as the best model would always be B/MSY = 1 
+   \end{itemize}
+   %\item{Residuals}
+   %\begin{itemize}
+   %     \item Figure \ref{fig:runs} summarises the residuals, in the form of runs test; green backgrounds denote a pass. Only two indices pass for all models Survey 1 quarter 1 and Survey 3 quarter 4
+  %        \item Over half of the indices fail for Jabba, half for SS while for ASPM the majority pass. This indicates strong data conflicts while  failure of the runs test may explain the retrospective patterns.
+  %\end{itemize}
+     \item{Model-free cross-validation} confirms the relative performance of the models
+    \begin{itemize}
+        \item Figures \ref{fig:hy1} and \ref{fig:hy3} shows that SS performs poorly, possibly because length compositions can only be explained by variations in year-class strengths, and projections predict large increase in biomass.
+        \item RMSE is difficult to interpret (Table \ref{tab:rmse}), MASE easier (Table \ref{tab:mase}).
+        \item Taylor diagram, shows that there is a big difference between model residuals and prediction residuals. Figure \ref{fig:td} summarises the historical model fits survey 4 performs the best, i.e. has high correlation for all models, while survey 3 performs poorly.
+        \item However, when three step ahead projections are considered (Figure \ref{fig:tdhat} ) survey 4 perform the best for ASPM, although the correlation is reduced. SS has high RMSE, poor correlation and high  variance.  
+   \end{itemize}
+ \end{description}
+ % [NOTE YOU CAN USE THIS INSTEAD OF BULLETS ABOVE] From our analysis the following can be discerned with respect to how well each models with respect to the current status quo in evaluating models, i.e. retrospective analysis. We then present the model free evaluating algorithms with hindcast for one and three year ahead projections. We chose 3 years as that is essentially the time-step between assessments in most tRFMO's. This is a crucial step in assessing which models perform better in model-free performance using what we call "model free cross-validation".
+
+%For the standard retrospective analysis,    Figure \ref{fig:retro} and Table \ref{tab:retro} summarise the retrospective analysis, taking 0.2 and -0.15 as the cut off points for accepting an assessment all assessments pass. The strongest retrospective patterns are seen for Stock Synthesis, where F is negatively biased, and although the value of Mohn's $\rho$ is low for SSB a strong pattern is seen with underestimates followed by overestimates. 
+
+%Although recent Jabba estimates are unbiased historical estimates of F and Biomass are negatively biased. Jabba estimates are problematic as it appears that even if F<FMSY the stock will decline below BMSY. ASPM estimates appears to have little bias and perform well on the retrospective analysis diagnostic for the time step evaluations chosen.
+
+%When performing the Retrospective analysis with projections for F/FMSY and B/BMSY, the following can be discerned; i) Figure \ref{fig:proj} and Table \ref{tab:proj} summarise the retrospective analysis combinded with a three prediction, again taking the cut off as 0.2 to -0.15, both SS and Jabba fail.ASPM appears not to show patterns in the projections and performs the best wrt to these criteria; ii) Survey 2 performs poorly across all models, iii) it is possible that the length compositions add noise to SS, and that area effects (JABBA) are important, as ASPM captures those dynamics.However these is no objective way to choose an assessment based on retrospective analysis as the best model would always be B/MSY = 1.
+
+%Model-free cross-validation confirms the relative performance of the models. Figures \ref{fig:hy1} and \ref{fig:hy3} shows that SS performs poorly, possibly because length compositions can only be explained by variations in year-class strengths, and projections predict large increase in biomass.RMSE is difficult to interpret (Table \ref{tab:rmse}), MASE easier (Table \ref{tab:mase}). Based on the Taylor diagram, shows that there is a big difference between model residuals and prediction residuals. Figure \ref{fig:td} summarises the historical model fits survey 4 performs the best, i.e. has high correlation for all models, while survey 3 performs poorly.However, when three step ahead projections are considered (Figure \ref{fig:tdhat} ) survey 4 perform the best for ASPM, although the correlation is reduced. SS has high RMSE, poor correlation and high  variance.  
+
+%The importance of this approach presented here is the ability to assess model performance, not on how well we do with the past, but how well we do when we project into the future. The model free evaluation techniques shown here provide a framework to evaluate the alternative models examined here. It also provides a recipe of how we can evaluate alternative model platforms in other areas globally using the hindcasting diagnostic.
+ %
+ 
+
+\section{Discussion: \all{ALL}}
+\input{discussion.tex}
+
+\section{Conclusions: \all{ALL}}
+
+Primary objectives were:
+\begin{enumerate}
+    \item In fisheries unlike other fields we try to account for the past but not for the future. Here we propose a way to assess model predictive performance and to account for alternative models within a common diagnostic framework.  
+    \item Unifying platform for evaluating across models
+    \item Advantage of MASE : What are the new properties of this stat
+    \item Consequences for stock assessment benchmarking
+    \item Consequences for uncertainty, risk and MSE.
+    \item Next steps
+\end{enumerate}
+
+\section{Appendix: Summary Metrics}
+\input{metrics_TK.tex}
+
+\bibliography{main.bib}
+\bibliographystyle{apalike}

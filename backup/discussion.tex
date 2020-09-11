@@ -1,0 +1,53 @@
+\section{Discussion}
+
+What we did
+[I think the discussion need to be shortened and reorganised a bit. Suggest firstly focusing on the technical aspects of  hincasting, with reference to YFT application, then discussing its merits/advantages over other methods - likelihood-based approach and retrospective analysis, and then progress to the discussion of using this approach to help determine the selection of model grid, with reference to ICCAT applications, and then touch upon other topics such as such as model weighting, with reference to MSE].
+]
+
+[I think there need to be some general comments/comparisons on the three models analysed, suggested something like:
+
+There is often trade-off in explanatory and predictive powers amongst models with varying levels of complexity. Highly parameterised, disaggregated models tend to have to a high degree of explanatory power as they are capable of describing a wide range biological and population processes. But such models often has a high degree of estimation variance resulting in poor predictive capability when there is insufficient data to estimate the underlying biological drivers, 
+On the other hand relatively simple models (e.g. deterministic production models) may lack the explanatory power to describe the dynamics in sufficient details, but their simple structure can be better characterised by the available data, leading to increased precision in model predictions.
+
+]
+
+\begin{itemize}
+    \item  We  compared SS, SS-ASPM, and JABBA assessments for Indian Ocean yellowfin tuna  using prediction skill, and discuss hypothesis testing, model selection and model validation. We make recommendations for the bench-marking of stock assessment methods and discuss the consequences for MSE. In particular the selection of stock assessment scenarios, the weighting of alternative Operating Models, modelling process error, and the development of Observation Error Models.   
+
+   \item We used forward traditional retrospective analyses in order to compare model predictions with historical estimates. The absence of retrospective patterns, however, while reassuring, is not sufficient as it is not possible to validate models based on model outputs. We therefore conduct also model-free hindcasts (i.e. based on observable quantities as CPUE) to compare observations with model estimates. 
+   
+   \item The use of metrics based on prediction skill allows different data components and model to be compared in order to explore data conflicts and potential model misspecification. The accuracy and precision of predictions depend on the validity of the model, the information in the data, and how far ahead predictions are required. 
+   
+   \item The main objectives of management frameworks are to achieve management targets (e.g. $B_{MSY}$) and avoid limits (e.g. Blim) with high probability. Therefore stock assessments need to provide estimates of uncertainty when reporting stock status and forecast. These may be based on estimation error, e.g.  by bootstrapping a best assessment, or by the use of multiple models to represent model and parameter uncertainty or by the combination of both. 
+
+  \item A best assessment is usually selected using AIC to find the most parsimonious model from within a set of scenarios. The use of AIC, however, means that multiple models with alternative datasets can not be evaluated. The use of the hindcast showed that the base case did not have prediction skill and that area effects were important, these results could not have been obtained at using AIC.\red{Should we mention here the cookbook philosophy? AIC is generally used but a more appropriate approach is via multiple diagnostics} 
+
+  \item In some cases, e.g. ICCAT, multiple model families are used to conduct the assessment and then various methods used to generate uncertainty (e.g. bootstrap, MCMC, MVLN) in order to construct the Kobe Phase Plot. Without the use of a pre-agreed model validation procedure, however, it is difficult to either weight or reject models. Therefore, a key step in benchmarking is the procedure and criteria used to include models in the original grid. 
+
+  \item An approach that has been proposed is ensemble modelling. The problems here is how to agree the scenarios to include and the weighting and acceptance criteria. Furthermore weighting of grids is only really possible if you use a common modelling framework like SS. In most if not all cases, however, the problems are unknown parameter values and data weighting. In which case the best approach is to develop robust management procedures. There is a need therefore to develop OMs based on hypotheses we can resolve, i.e. show the value of information. In the mean time we need to develop robust MPs based on the value of control \red{what do you mean here?}.
+\end{itemize}
+  
+ What we think
+ 
+\begin{itemize}
+    \item An assessment model can not be chosen based on a retrospective analysis alone, since you can only validate a model using observations. For example a strong retrospective pattern can be improved using shrinkage \parencite{dickey2007precisely}. Such a model, however, would have little prediction skill if shrinkage simply removes recent year-class signals and changes in selection pattern, both of which determine future stock biomass and fishing mortality. Furthermore, in statistics shrinkage is used to reduce variance at the expense of increasing bias, however, using model outputs means that bias can not be estimated. 
+    
+    \item  While the retrospective-hindcast provides a useful diagnostic to check for consistency between predictions and historical model estimates, the use of latent state variable such as $B_{t}$ does not permit formal model validation. 
+
+    \item Most goodness of fit diagnostics in stock assessment are based on the inspection of model residuals, obtained from fits to historical data, to identify patterns due to bias, drift, skewness, heavy tails, correlation with states or driving inputs, and heteroscedasticity.  It is rarely possible to conceive a list of tests on residuals before seeing them, which means that the hypotheses we are testing, implicitly or explicitly, are not proposed independently of data. There is therefore a danger of hypothesis fishing. Furthermore, if multiple true hypotheses are tested it is likely that some of them will be rejected incorrectly. This is not in agreement with the principles of statistics and is a well-known problem of post-hoc analysis. For that reason the ubiquitous significance level of 5\% should not be used uncritically \cite{wasserstein2016asa}. It is therefore good practice to reserve part of the data for validation, so that a pattern’s significance is not tested on the same data set which suggested the pattern.
+    
+    \item  The model-free hindcast provides an way to validate models based on prediction skill, since if MASE >1 then a random walk is better than the model. The MASE also allows you to compare across models and data series you how good the prediction skill is, since an a MASE of 0.5 is twice as good as a MASE of 1.  
+    
+    \item When MASE>1 this is probably because there are some processes that are not being modelled correctly or else the data series do not contain information on stock abundance or are in conflict with those where MASE<1. Therefore there is a need to extend or revisit the model structure. Since MASE can also be used to compare across models, unlike AIC, it can still be used in this process to compare new models and datasets. 
+    
+    \item Individual indices could also have been removed 1 year-at-time. The retrospective-hindcast, however is an important first step as it shows the transition from retrospective analysis of model based quanties (i.e. F and SSB) to the model-free hindcast.  Index by index model-free validation allows for direct inference about the impact of each index to be evaluated, which is important if we want to work out how to extend/modify the model.     
+
+    \item  In the case of the YFT example, if only a retrospective analysis had been conducted and model residuals examined it may have been concluded that all models were equally good. By performing a 1 and 3 step ahead prediction, it was shown that the base case was modelling noise and JABBA by not accounting for spatial structuring has limited prediction skill. The best MASE values were seen for ASPM, since the length compositions were only added noise and area effects were important but were not included in JABBA.
+
+    \item  The results have direct applications for developing a objective process to assign weights to candidate models within a model ensemble that included different families and datasets, and important in contrast to model selection and hypothesis testing, which are mainly used to reject models provides a procedure for future model development. For example to explore the importance of different processes.\red{something is missing here}
+
+    %\item  Emphasize that these results are case specific and should not be generalized. What can be generalized is the here presented analysis, given than it is transferable across both platforms can be applied model scenarios that are fitted different data sets.
+
+    \item The results have consequences for MSE, both for selection of OMs  which are used to simulate future states under feedback control, and the choice of indices to simulate in the OEM. If the SS base case has poor prediction skill how can it be used as the basis of OM development? The OEM generates data for use in the MP, the TDs characterise the process and measurement error, i.e. only indices with high correlation should be used as input to the MP. What if more than 1 OM scenarios has been conditioned with alternative data weightings and in each case there is a different preferred index? 
+
+\end{itemize}
