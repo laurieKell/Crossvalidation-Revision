@@ -24,12 +24,9 @@
 \usepackage{lineno}
 \linenumbers
 
-\usepackage{subcaption}
-
+%\usepackage{subcaption}
 
 \begin{document}
-
-\input{response}
 
 \title{Validation of stock assessment models using prediction skill: Is it me or my model talking? 
 %For as the eyes of bats are to the blaze of day, so is the reason in our soul to the things which are by nature most evident of all.
@@ -123,7 +120,7 @@ Stock Synthesis \parencite[SS,][]{methot2013stock} is used to conduct the main a
 
 %There has been a recent trend in stock assessment toward the use of integrated analysis that combines several sources of data into a single model by a joint likelihood for the observed data \parencite[e.g.][]{doubleday1976least,fournier1982general,maunder2013review}. data sets include records of catches and landings, indices of abundance based on catch per unit (CPUE) or from research surveys, and length and age compositions based on samples. An example of an integrated assessment method is SS that can be configured in multiple ways, allowing for a range of scenarios to be developed to reflect uncertainty.
 
-SS provides a flexible framework for conducting stock assessment and \cite{maunder2015contemporary} proposed a deterministic implementation of an age-structured production model (ASPM) in SS as a diagnostic of processes that control the shape of the production function \parencite{carvalho2017can}. Selectivity in ASPM is parameterised based on the selectivity estimated by a "full" SS model. The model is then fitted to the abundance indices, without the size composition data contributing to the likelihood function. Recruitment deviations can either be estimated (as in our example) or set to zero.}. This enables an evaluation of whether the observed catches alone can explain trends in the index of abundance. If the ASPM is able to fit the indices of abundance well then a production function is likely to exist (i.e. the dynamics are driven by density-dependent processes), and the indices provide information about absolute abundance. If the fit is poor, then the catch data alone cannot explain the trends in the indices. This can have several causes, namely (i) stock dynamics are recruitment-driven, (ii) the stock has not yet declined to the point at which catch is a major factor influencing abundance; (iii) the indices of relative abundance are not proportional to abundance;  (iv) the model is incorrectly specified; or (v) the data are incorrect. While a production function was evident in the fit, the overall fit to the indices of abundance in 3 of the 4 areas was poor, and hence we used recruitment deviates to help capture the trends in abundance by area \cite[see][]{minte2017get}.
+SS provides a flexible framework for conducting stock assessment and \cite{maunder2015contemporary} proposed a deterministic implementation of an age-structured production model (ASPM) in SS as a diagnostic of processes that control the shape of the production function \parencite{carvalho2017can}. Selectivity in ASPM is parameterised based on the selectivity estimated by a "full" SS model. The model is then fitted to the abundance indices, without the size composition data contributing to the likelihood function. Recruitment deviations can either be estimated (as in our example) or set to zero. This enables an evaluation of whether the observed catches alone can explain trends in the index of abundance. If the ASPM is able to fit the indices of abundance well then a production function is likely to exist (i.e. the dynamics are driven by density-dependent processes), and the indices provide information about absolute abundance. If the fit is poor, then the catch data alone cannot explain the trends in the indices. This can have several causes, namely (i) stock dynamics are recruitment-driven, (ii) the stock has not yet declined to the point at which catch is a major factor influencing abundance; (iii) the indices of relative abundance are not proportional to abundance;  (iv) the model is incorrectly specified; or (v) the data are incorrect. While a production function was evident in the fit, the overall fit to the indices of abundance in 3 of the 4 areas was poor, and hence we used recruitment deviates to help capture the trends in abundance by area \cite[see][]{minte2017get}.
 
 An alternative to an integrated assessment is to use a biomass dynamic model, based on an explicit production function, this requires the estimation and fixing of fewer parameters. We used JABBA that presents a unifying, flexible framework for biomass dynamic modelling, runs quickly, and generates reproducible stock status estimates \parencite{winker2018jabba}. A Pella Tomlinson production function \parencite{pella1969generalized} was assumed as this allows the shape of the production function to be varied, and alternative assumptions about productivity, stock status and reference points to be evaluated. To make analyses comparable priors for the JABBA production function parameters were based on the SS base case. 
 
@@ -148,7 +145,7 @@ Hindcasting like retrospective analysis involves fitting a model using a tail-cu
 %We  define `retro-period' and `hc-period' as `the period of shrunken data set for retrospective model fitting' and `future time period (i.e. horizons) with a certain projection step (say $S \geq 1$) for hindcasting after retro-period''. 
 Assessment cycles are typically for three years in most tuna Regional Fisheries Management Organisations and so an horizon of three years was used.
 
-In the procedure used in this study only CPUE observations were removed, catch and length composition remained in the model. Time series of pseudo data were generated from estimates of vulnerable biomass and catchability ($q$). Prediction residuals ($\e$) were then computed as the difference between the predictions and the observations. %Hindcasting was not conducted with the length composition data, as it has been demonstrated that following the length data is often misleading if it conflicts with the abundance data \parencite{francis2011data}. In addition, in the case of the Indian Ocean yellowfin assessment length had been down weighted significantly so that they did not conflict with the indices of abundance \parencite{fu2018yft}. Keeping the catch data meant that it was not necessary to run a projection as an additional step.
+In the procedure used in this study only CPUE observations were removed, catch and length composition remained in the model. Time series of pseudo data were generated from estimates of vulnerable biomass and catchability ($q$). Prediction residuals ($e$) were then computed as the difference between the predictions and the observations. %Hindcasting was not conducted with the length composition data, as it has been demonstrated that following the length data is often misleading if it conflicts with the abundance data \parencite{francis2011data}. In addition, in the case of the Indian Ocean yellowfin assessment length had been down weighted significantly so that they did not conflict with the indices of abundance \parencite{fu2018yft}. Keeping the catch data meant that it was not necessary to run a projection as an additional step.
 
 %Finally, \cite{minte2017get} demonstrate for BET in the eastern Pacific following the length data can often lead to model misspecification and discuss the trade off of larger uncertainty due to estimating deviates based on indices rather than being more precise but off scale when using the length data, particularly if other parameters such as the life history of the species is misspecified.
 
@@ -166,7 +163,7 @@ where , $n$ is the number of time steps that the peel is performed for, $t$ is t
 
 $\rho_M$ is an average of the relative differences at the final time of each window, and is a measure of relative retrospective `bias' (scale-free) in a statistical sense. The metric tends to be applied not on the log but the original scale because both the directions of positive and negative bias are regarded as being equivalent. $\rho$ can be estimated for different horizons 
 \begin{equation}
-\label{eqn:mohn}
+\label{eqn:mohn2}
 \rho_{M} = \disp \frac{1}{n-h+1} \sum_{t=T-n}^{T-h} \frac{\hat{y}_{(1:t)|t+h}-\hat{y}_{(1:T)|t+h}}{\hat{y}_{(1:T)|t+h}} 
 \end{equation}
 
@@ -177,7 +174,7 @@ For reference values which are low relative to the alternative there is no upper
 Prediction skill based on a forecast compares an observation at time $t$ ($y_t$) to an estimate of that observation made $h$ time steps previously ($\hat{y}_{t|t-h}$). To do this we use the mean absolute scaled error (MASE), as it is a robust and easy to interpret statistic \parencite{hyndman2006another}. The MASE compares prediction error ($e_t$) for a prediction horizon of $h$ 
 
 \begin{equation}
-\label{eqn:skill}
+\label{eqn:err}
  e_t = y_t -\hat{y}_{t|t-h} 
 \end{equation}
 
@@ -185,26 +182,26 @@ Prediction skill based on a forecast compares an observation at time $t$ ($y_t$)
 to a benchmark forecast corresponding to a na\"{i}ve forecast equal to the last observed value. 
 
 \begin{equation} 
-{\hat {y}}_{t|t-h}=y_{t-h}}
+\hat{y}_{t|t-h}=y_{t-h}
 \end{equation}
 
 \noindent For a peel of $n$ and a horizon of $h$ years
 
 \begin{equation}
 \label{eqn:skill}
-\eqn{MASE={\frac {\frac{1}{n+1}   
-\sum _{t=T-n}^{T}\left|y_t - \hat{y}_{t|t-h}\right|}{
-                  \frac{1}{n+1+h} 
-                  \sum _{t=T-n-h}^{T}\left|{y_{t} - {y}}_{t-h}}\right|}}} \\
+MASE=\frac{\frac{1}{n+1}\sum_{t=T-n}^{T} \left| y_t - \hat{y}_{t|t-h} \right|}{\frac{1}{n+1+h}\sum_{t=T-n-h}^{T} \left| y_{t} - {y}_{t-h}\ \right|}
+%\frac{\frac{1}{n+1} \sum _{t=T-n}^{T}\left|y_t - \hat{y}_{t|t-h}\right|}{
+%                  \frac{1}{n+1+h} 
+%                  \sum_{t=T-n-h}^{T}\left|{y_{t} - {y}}_{t-h}}\right|} \\
 \end{equation}
 
-The MASE has the desirable properties of scale in-variance so can be used to compare forecasts across data sets with different scales, predictable behaviour, symmetry, interpretability and asymptotic normality. Unlike relative error MASE does not skew its distribution even when the observed values are close to zero, is easy to interpret as a score of 0.5 indicates that the model forecasts are twice as accurate as a na\''{i}ve baseline prediction. The Diebold-Mariano test \parencite{diebold1995comparing} for one-step forecasts can also be used to test the statistical significance of the difference between two sets of forecasts. 
+The MASE has the desirable properties of scale in-variance so can be used to compare forecasts across data sets with different scales, predictable behaviour, symmetry, interpretability and asymptotic normality. Unlike relative error MASE does not skew its distribution even when the observed values are close to zero, is easy to interpret as a score of 0.5 indicates that the model forecasts are twice as accurate as a na\''{i}ve baseline prediction. The Diebold-Mariano test \parencite{diebold1995comparing} for one-step forecasts can also be used to test the statistical significance of the difference between two sets of forecasts, i.e. by comparing the prrediction $y_t -\hat{y}_t$ to a random walk $y_t-y_{t-1}$. 
 
 \section{Results}
 
 The 1-step ahead (equivalent to a retrospective analysis) and the 3-step ahead predictions for model based quantities are presented in figure \ref{fig:retro} and summarised in table \ref{tab:retro-rho}. These show estimates of stock size - $SSB$ or biomass ($B$) - and exploitation level - fishing mortality ($F$) or harvest rate ($U$) - relative to their maximum sustainable yield ($MSY$) reference points.
 
-No retrospective pattern is seen for ASPM, either for the traditional 1 or the 3-step ahead forecasts. For SS a negative bias is seen in $SSB/SSB_{MSY}$ for 1-step ahead, while for the 3-step ahead forecast $SSB$ is overestimated in the recent period; little change is seen in the estimates of $F/F_{MSY}$. JABBA shows a slightly negative retrospective patterns for harvest rate, which increases for the forecast. In the case of JABBA although exploitation is less than the ${MSY}$ level stock biomass still declines below $B_{MSY}$, which implies that process error rather than the production function is driving the future dynamics. $\rho$ has to be in the range $[-0.15,0.2]$ for an assessment to be accepted, and all the assessments apart for the SS estimates of F pass the $\rho_{M_r}$ test. When the 3 year projection is considered, however, only ASPM shows acceptable performance. 
+No retrospective pattern is seen for ASPM, either for the traditional one (figure \ref{fig:retro}) or three-step (figure \ref{fig:retro3})  ahead forecasts. For SS a negative bias is seen in $SSB/SSB_{MSY}$ for 1-step ahead, while for the 3-step ahead forecast $SSB$ is overestimated in the recent period; little change is seen in the estimates of $F/F_{MSY}$. JABBA shows a slightly negative retrospective patterns for harvest rate, which increases for the forecast. In the case of JABBA although exploitation is less than the ${MSY}$ level stock biomass still declines below $B_{MSY}$, which implies that process error rather than the production function is driving the future dynamics. $\rho$ has to be in the range $[-0.15,0.2]$ for an assessment to be accepted, and all the assessments apart for the SS estimates of F pass the $\rho_{M_r}$ test. When the 3 year projection is considered, however, only ASPM shows acceptable performance. 
 
 The results from the model-free hindcasts are shown in Figures~\ref{fig:hy} and \ref{fig:hy3} for the one and three year ahead predictions respectively. The background colour indicates whether MASE $\le 1$. Table \ref{tab:mase} summarises the MASE values. For SS and JABBA, prediction skill is poor for CPUE indices 2 and 4; the ASPM also performs poorly for Area 2. Prediction skill deteriorates for the three step ahead projection, particularly for the SS and JABBA; although for ASPM, CPUE indices for regions 1 and 3 still have good prediction skill. 
 
@@ -234,7 +231,7 @@ The approach can also be used with an ensemble of models to develop robust advic
 
 Another promising field of applications is to use the hindcast procedure to weight multi-model ensembles using skill-based weighting. Here, a prediction skill score can be used to assign more weight on the better performing models as this has been found to improve forecasts \parencite[e.g.][]{casanova2009weighting}. This can be done to weight estimates of current status relative to reference points, or weight operating models. Testing the approach on an actual case study first was informative as it provides the insight necessary to set up a study on synthetic data.
 
-As the stock assessment process become more complex, e.g. through the increased use of integrated models, ensembles of models, and MSE, there are concerns about a lack of transparency. This is because of the many internal, implicit and often poorly documented assumptions, and a lack of access as only a few highly skilled experts are able to run the models \citep{hilborn2003state}. Therefore to increase confidence in the outputs of a model and trust amongst the public, stake and asset-holders and policymakers it is important for modelers to ask “is it me or my model talking” before others ask the question posed by \cite{hodges1992you} that is it "you or your model talking?".
+As the stock assessment process become more complex, e.g. through the increased use of integrated models, ensembles of models, and MSE, there are concerns about a lack of transparency. This is because of the many internal, implicit and often poorly documented assumptions, and a lack of access as only a few highly skilled experts are able to run the models \parencite{hilborn2003state}. Therefore to increase confidence in the outputs of a model and trust amongst the public, stake and asset-holders and policymakers it is important for modelers to ask “is it me or my model talking” before others ask the question posed by \cite{hodges1992you} that is it "you or your model talking?".
 
 \section{Acknowledgements}
 
@@ -275,39 +272,6 @@ We would like to thank the ABNJ process in FAO (in particular, Alejandro Anganuz
 \end{center}
 \end{table}
 
-\iffalse
-\begin{table}[ht]
-\caption{Model-free results}
-\begin{center}
-\label{tab:mase}
-\small
-\begin{tabular}{|cc|ccc|ccc|ccc|ccc|}
-\hline
-Region & Quarter &  & MASE &  &  & RMSE & &  & $\rho$ &  & & $\sigma$ &  \\
-&         & SS & ASPM & JABBA & SS & ASPM & JABBA & SS & ASPM & JABBA & SS & ASPM & JABBA \\
-\hline\hline
-1 & 1 & 1.04 & 0.56 & 0.98 & 0.46 & 0.26 & 0.42 & 0.45 & 0.74 & 0.34 & 0.45 & 0.27 & 0.41 \\ 
-1 & 2 & 0.80 & 0.44 & 0.95 & 0.34 & 0.20 & 0.38 & 0.69 & 0.90 & 0.44 & 0.34 & 0.21 & 0.39 \\ 
-1 & 3 & 1.33 & 0.99 & 1.08 & 0.50 & 0.39 & 0.35 & 0.48 & 0.32 & 0.47 & 0.42 & 0.38 & 0.30 \\ 
-1 & 4 & 1.13 & 0.58 & 1.23 & 0.39 & 0.23 & 0.36 & 0.51 & 0.69 & 0.46 & 0.40 & 0.23 & 0.33 \\ 
-2 & 1 & 1.91 & 1.48 & 1.51 & 0.46 & 0.34 & 0.42 & 0.18 & 0.70 & 0.29 & 0.43 & 0.21 & 0.29 \\ 
-2 & 2 & 2.29 & 1.83 & 2.03 & 0.74 & 0.59 & 0.59 & -0.33 & 0.14 & 0.06 & 0.57 & 0.36 & 0.32 \\ 
-2 & 3 & 1.50 & 1.10 & 1.05 & 0.46 & 0.32 & 0.30 & 0.33 & 0.34 & 0.16 & 0.44 & 0.28 & 0.25 \\ 
-2 & 4 & 1.60 & 1.97 & 1.63 & 0.50 & 0.49 & 0.40 & 0.44 & 0.61 & 0.30 & 0.39 & 0.24 & 0.26 \\ 
-3 & 1 & 1.65 & 0.71 & 0.68 & 0.52 & 0.22 & 0.23 & 0.27 & 0.73 & 0.66 & 0.40 & 0.22 & 0.24 \\ 
-3 & 2 & 1.43 & 0.96 & 1.36 & 0.46 & 0.31 & 0.36 & 0.42 & 0.63 & 0.82 & 0.41 & 0.31 & 0.19 \\ 
-3 & 3 & 1.53 & 0.86 & 1.34 & 0.38 & 0.26 & 0.31 & 0.49 & 0.64 & 0.76 & 0.35 & 0.24 & 0.20 \\ 
-3 & 4 & 1.03 & 0.75 & 1.07 & 0.52 & 0.34 & 0.41 & 0.70 & 0.84 & 0.86 & 0.39 & 0.33 & 0.42 \\ 
-4 & 1 & 4.02 & 0.96 & 2.99 & 0.75 & 0.21 & 0.48 & 0.47 & 0.84 & 0.90 & 0.44 & 0.22 & 0.16 \\ 
-4 & 2 & 1.74 & 0.66 & 1.28 & 0.82 & 0.34 & 0.47 & 0.50 & 0.81 & 0.78 & 0.56 & 0.35 & 0.37 \\ 
-4 & 3 & 3.45 & 1.04 & 2.13 & 0.86 & 0.27 & 0.49 & 0.33 & 0.69 & 0.73 & 0.55 & 0.28 & 0.21 \\ 
-4 & 4 & 5.79 & 1.28 & 5.12 & 0.82 & 0.20 & 0.51 & 0.50 & 0.88 & 0.90 & 0.53 & 0.18 & 0.15 \\ 
-\hline
-\end{tabular}
-\end{center}
-\end{table}
-\fi
-
 \begin{table}[ht]
 \caption{Mean Absolute Scaled Error (MASE) used for model-free validation of  the full Stock Synthesis (SS) reference case, the corresponding Age-Structure Equilibrium Model (ASPM) and Bayesian state-space biomass dynamics model JABBA based on individual CPUE observations by region and quarter. The MASE values are shown for hindcasts with cross-validation of 1-year ahead and 3-year ahead projections  }
 \begin{center}
@@ -347,38 +311,46 @@ Region & Quarter &    & 1 year & & & 3 year &   \\
 
 \begin{figure*}[!ht]
 \centering
-\includegraphics[width=6in]{figures/map.png}
+\includegraphics[width=6in]{fig1.eps}
 \caption{Spatial stratification of the Indian Ocean for the four region assessment model (R1a and R1b were treated as a single model region R1 but were retained for the fleet definition). The black arrows represent the configuration of the movement parameterization.  Density contours represent of the dispersal of tag releases (red) and subsequent recaptures from Indian Ocean Regional tuna tagging programme. Green circles represent the distribution of catches from the longline fishery aggregated by 5 degree longitude and latitude for 1980 to 2017 (max. = 133 770 t).}
 \label{fig:map}
 \end{figure*}
 
 
 \begin{figure}
-\subcaptionbox{{a) 1-step ahead\newline}\label{fig:retro1}}{\includegraphics[width=6in]{figures/final-retro-1.png}}
-
-\subcaptionbox{{b) 3-step ahead\newline}\label{fig:reto3}}{\includegraphics[width=6in]{figures/final-retro3-1.png}}
-
-\caption{Hindcasts by a) 1 -step and b) 3-step ahead for Stock Synthesis (SS),  Age-Structure Equilibrium Model (ASPM), and Bayesian state-space biomass dynamics model (JABBA).  The thick solid line represent the model estimates for relative stock quantities $stock$ and $harvest$ relative to $MSY$ benchmarks ($SSB$ and instantaneous fishing mortality for SS and ASPM and total biomass and harvest rate for JABBA). The points indicate the terminal years of the peels.}\label{fig:retro}
+\centering
+\includegraphics[width=6in]{fig2.eps}
+\caption{Hindcasts for one-step for Stock Synthesis (SS),  Age-Structure Equilibrium Model (ASPM), and Bayesian state-space biomass dynamics model (JABBA).  The thick solid line represent the model estimates for relative stock quantities $stock$ and $harvest$ relative to $MSY$ benchmarks ($SSB$ and instantaneous fishing mortality for SS and ASPM and total biomass and harvest rate for JABBA). The points indicate the terminal years of the peels.}
+\label{fig:retro}
 \end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=6in]{fig3.eps}
+\caption{Hindcasts for three-step for Stock Synthesis (SS),  Age-Structure Equilibrium Model (ASPM), and Bayesian state-space biomass dynamics model (JABBA).  The thick solid line represent the model estimates for relative stock quantities $stock$ and $harvest$ relative to $MSY$ benchmarks ($SSB$ and instantaneous fishing mortality for SS and ASPM and total biomass and harvest rate for JABBA). The points indicate the terminal years of the peels.}
+\label{fig:retro3}
+\end{figure}
+
 
 \begin{figure*}[htbp]
 \centering
-\includegraphics[width=6in]{figures/final-hy-plot-1.png}
+\includegraphics[width=6in]{fig4.eps}
 \caption{Hindcasts with one year ahead projections for CPUE indices by region and quarter. Green backgrounds indicate that the CPUE index passes Mean Absolute Scaled Error (MASE < 1) criterion, or failed (red) otherwise. Red dots are the observed CPUE values and thin lines are the fits with terminal hincast year indicated by a solid point.}
 \label{fig:hy}
 \end{figure*}
 
 \begin{figure*}[htbp]
 \centering
-\includegraphics[width=6in]{figures/final-hy3-plot-1.png}
-\caption{Hindcasts for 3 year ahead projections for CPUE indices by region and quarter. Green backgrounds indicate that the CPUE index passes Mean Absolute Scaled Error (MASE < 1) criterion, or failed (red) otherwise. Red dots are the observed CPUE values and thin lines are the fits with terminal hincast year indicated by a solid point.}
+\includegraphics[width=6in]{fig5.eps}
+\caption{Hindcasts for three year ahead projections for CPUE indices by region and quarter. Green backgrounds indicate that the CPUE index passes Mean Absolute Scaled Error (MASE < 1) criterion, or failed (red) otherwise. Red dots are the observed CPUE values and thin lines are the fits with terminal hincast year indicated by a solid point.}
 \label{fig:hy3}
 \end{figure*}
 
 \begin{figure*}[htbp]
 \centering
-\includegraphics[width=4in]{figures/final-rsdl-1.png}
-\caption{ Boxplots showing model residuals and prediction residuals for 1,2,3,4 and 5 year ahead projections, pooled for all CPUE indices across regions and quarters.}
+\includegraphics[width=4in]{fig6.eps}
+\caption{Boxplots showing model residuals and prediction residuals for 1,2,3,4 and 5 year ahead projections, pooled for all CPUE indices across regions and quarters.}
 \label{fig:residuals}
 \end{figure*}
 
